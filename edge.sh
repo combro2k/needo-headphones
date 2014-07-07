@@ -5,7 +5,9 @@ if [ -z "$EDGE" ]; then
   echo "Bleeding edge not requested"
 else
   apt-get install -qy git
-  rm -rf /opt/headphones
-  git pull https://github.com/rembo10/headphones.git /opt/headphones
+  if [[ -d "/opt/headphones" ]]; then
+    rm -rf /opt/headphones
+  fi
+  git clone https://github.com/rembo10/headphones.git /opt/headphones
   chown -R nobody:users /opt/headphones
 fi
