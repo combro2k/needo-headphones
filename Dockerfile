@@ -15,12 +15,12 @@ RUN usermod -g 100 nobody
 RUN apt-get update -q
 
 # Install Dependencies
-RUN apt-get install -qy python wget
+RUN apt-get install -qy python wget unzip
 
 # Install headphones v0.3.4
-RUN mkdir /opt/headphones
-RUN wget -P /tmp/ https://github.com/rembo10/headphones/archive/v0.3.4.tar.gz
-RUN tar -C /opt/headphones -xvf /tmp/v0.3.4.tar.gz --strip-components 1
+RUN wget -P /tmp/ https://github.com/rembo10/headphones/archive/master.zip
+RUN unzip -d /opt /tmp/master.zip
+RUN mv /opt/headphones-master /opt/headphones
 RUN chown nobody:users /opt/headphones
 
 EXPOSE 8181
